@@ -1,0 +1,12 @@
+platform :ios, "8.0"
+use_frameworks!
+
+pod 'Parse'
+
+target 'Mixr' do
+
+end
+
+target 'MixrTests' do
+
+end

@@ -1,0 +1,6 @@
+framework module Pods_MixrTests {
+  umbrella header "Pods-MixrTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
