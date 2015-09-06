@@ -8,10 +8,11 @@
 
 import UIKit
 
-class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DataListener {
 
     @IBOutlet var ingredientCollectionView: UICollectionView!
     var ingredients:[Ingredient!]!
+    var dataManager:DataManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,14 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         setUpCollectionView()
         
         ingredients = [Ingredient(name: "Whiskey", image: UIImage(named: "whiskey")!)]
+        dataManager = DataManager(listener: self)
+        
+    }
+    
+    func dataFinished() {
+        self.ingredientCollectionView.reloadData()
+        println("Ingredient count \(dataManager.ingredients.count)")
+        print("Reloaded data")
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,14 +65,14 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return dataManager.ingredients.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = ingredientCollectionView.dequeueReusableCellWithReuseIdentifier("IngredientCell", forIndexPath: indexPath) as! IngredientCell
-        cell.name.text = ingredients[0].name
-        cell.ingredientImage.image = ingredients[0].image
+        cell.name.text = dataManager.ingredients[indexPath.row].name
+        cell.ingredientImage.image = dataManager.ingredients[indexPath.row].image
         cell.layer.cornerRadius = 6
         println("We made a cell")
         return cell
