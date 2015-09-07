@@ -10,9 +10,14 @@ import UIKit
 
 class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DataListener {
 
+    @IBOutlet var iHaveLabel: UILabel!
+    @IBOutlet var scrollViewHeight: NSLayoutConstraint!
+    @IBOutlet var ingredientScrollView: UIScrollView!
     @IBOutlet var ingredientCollectionView: UICollectionView!
-    var ingredients:[Ingredient!]!
     var dataManager:DataManager!
+    
+    @IBAction func Go(sender: AnyObject) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +26,6 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         setUpFontAndColors()
         setUpCollectionView()
         
-        ingredients = [Ingredient(name: "Whiskey", image: UIImage(named: "whiskey")!)]
         dataManager = DataManager(listener: self)
         
     }
@@ -53,7 +57,11 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         let layout:UICollectionViewLayout = UICollectionViewLayout()
         ingredientCollectionView.dataSource = self
         ingredientCollectionView.delegate = self
-        //ingredientCollectionView.registerClass(IngredientCell.self, forCellWithReuseIdentifier: "IngredientCell")
+    }
+    
+    func setUpScrollView() {
+        self.scrollViewHeight.constant = 80
+        ingredientScrollView.pagingEnabled = true
     }
     
     
@@ -74,7 +82,6 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         cell.name.text = dataManager.ingredients[indexPath.row].name
         cell.ingredientImage.image = dataManager.ingredients[indexPath.row].image
         cell.layer.cornerRadius = 6
-        println("We made a cell")
         return cell
         
     }
@@ -90,7 +97,23 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     optional func collectionView(collectionView: UICollectionView, shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool // called when the user taps on an already-selected item in multi-select mode
     */
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.row)
+        
+        if(dataManager.selectedIngredients.count == 0) {
+            setUpScrollView()
+            iHaveLabel.text = "And..."
+        }
+    
+        if(dataManager.selectIngredient(indexPath.row)) {
+            addIngredient(dataManager.ingredients[indexPath.row], number: dataManager.selectedIngredients.count)
+        }
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+        })
+
+        // Add the view to the scroll view
+        println(indexPath.row)
+        println("Selected ingredients count: \(dataManager.selectedIngredients.count)")
     }
     /*
     
@@ -112,5 +135,28 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // support for custom transition layout
     optional func collectionView(collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout!
     */
+    
+    func addIngredient(ingredient: Ingredient, number: Int) {
+        var numSelected:CGFloat = CGFloat(number)
+        var dimensions:CGFloat = 75
+        var offset:CGFloat = (20 * numSelected) + (dimensions * (numSelected - 1))
+        var ingredientView = UIView(frame: CGRectMake(offset, 0, dimensions, dimensions))
+        ingredientView.layer.cornerRadius = 6
+        ingredientView.backgroundColor = UIColor.whiteColor()
+        
+        var drinkImageView = UIImageView(frame: CGRectMake(27.5, 10, 20, 40))
+        drinkImageView.image = ingredient.image
+        
+        var drinkLabel = UILabel(frame: CGRectMake(0, 55, dimensions, 15))
+        drinkLabel.text = ingredient.name
+        drinkLabel.font = UIFont(name: "Avenir", size: 15)
+        drinkLabel.textAlignment = .Center
+        
+        ingredientView.addSubview(drinkImageView)
+        ingredientView.addSubview(drinkLabel)
+        
+        ingredientScrollView.contentSize = CGSizeMake(offset + dimensions + 10, ingredientScrollView.frame.height)
+        ingredientScrollView.addSubview(ingredientView)
+    }
 
 }

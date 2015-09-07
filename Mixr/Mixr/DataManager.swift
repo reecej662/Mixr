@@ -26,7 +26,6 @@ class DataManager {
         query.orderByAscending("name")
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
             if(error == nil) {
-                println("Object count \(objects!.count)")
                 if let objects = objects as? [PFObject] {
                     for object in objects {
                         self.ingredients.append(Ingredient(object: object))
@@ -75,8 +74,13 @@ class DataManager {
         return ingredients[selectionIndex]
     }
     
-    func selectIngredient(selectionIdex: Int) {
-        self.selectedIngredients.append(ingredients[selectionIdex])
+    // Returns true if successful, else returns false
+    func selectIngredient(selectionIndex: Int) -> Bool {
+        if !contains(ingredients[selectionIndex], ingredientArray: selectedIngredients) {
+            self.selectedIngredients.append(ingredients[selectionIndex])
+            return true
+        }
+        return false
     }
     
     func getSelectedIngredients() -> [Ingredient]! {
@@ -89,6 +93,15 @@ class DataManager {
     
     func setDataListener(listener: DataListener) {
         self.listener = listener
+    }
+    
+    func contains(ingredient: Ingredient, ingredientArray: [Ingredient]) -> Bool{
+        for ingredientItem in ingredientArray {
+            if ingredient.equals(ingredientItem) {
+                return true
+            }
+        }
+        return false
     }
     
 }
