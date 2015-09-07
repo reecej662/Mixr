@@ -45,7 +45,7 @@ struct Drink {
     init(object: PFObject) {
         self.name = object["name"] as! String
         self.image = UIImage(named: object["image"] as! String)!
-        self.instructions = object["instructions"] as! String
+        self.instructions = "Blank for now" //object["instructions"] as! String
         self.ingredients = []
     
         let ingredientRelation = object["ingredients"] as! PFRelation

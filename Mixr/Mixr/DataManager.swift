@@ -37,13 +37,14 @@ class DataManager {
     }
     
     func getDrinksFromParse() {
-        var query = PFQuery(className: "drinks")
+        var query = PFQuery(className: "Drinks")
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
             if(error == nil) {
                 if let objects = objects as? [PFObject] {
                     for object in objects {
                         self.drinks.append(Drink(object: object))
                     }
+                    self.listener.dataFinished()
                 }
             }
         }

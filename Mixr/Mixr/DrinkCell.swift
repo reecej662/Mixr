@@ -6,8 +6,16 @@
 //  Copyright (c) 2015 RJ. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class DrinkCell: UITableViewCell {
 
+    @IBOutlet var drinkName: UILabel!
+    @IBOutlet var drinkImage: UIImageView!
+    @IBOutlet var ingredientList: UILabel!
+    @IBOutlet var saveForLater: UILabel!
+    
+    @IBAction func selectionButton(sender: AnyObject) {
+    }
+    
 }

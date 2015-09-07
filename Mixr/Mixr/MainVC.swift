@@ -27,6 +27,7 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         setUpCollectionView()
         
         dataManager = DataManager(listener: self)
+        println(self.parentViewController)
         
     }
     
@@ -42,7 +43,7 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func setUpFontAndColors() {
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent
         self.navigationController?.navigationBar.barTintColor = colorWithHexString("#D54903")
     
         if let font = UIFont(name: "Pacifico", size: 20) {
@@ -54,9 +55,9 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func setUpCollectionView() {
-        let layout:UICollectionViewLayout = UICollectionViewLayout()
         ingredientCollectionView.dataSource = self
         ingredientCollectionView.delegate = self
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     func setUpScrollView() {
@@ -155,8 +156,21 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         ingredientView.addSubview(drinkImageView)
         ingredientView.addSubview(drinkLabel)
         
-        ingredientScrollView.contentSize = CGSizeMake(offset + dimensions + 10, ingredientScrollView.frame.height)
+        var contentSize = CGSizeMake(offset + dimensions + 10, ingredientScrollView.frame.height)
+        ingredientScrollView.contentSize = contentSize
         ingredientScrollView.addSubview(ingredientView)
+        
+        if(contentSize.width > self.view.frame.width) {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.ingredientScrollView.contentOffset = CGPointMake(self.ingredientScrollView.contentSize.width - self.view.frame.width,0)
+            })
+        }
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "mix") {
+            let drinkTableVC = segue.destinationViewController as! DrinkTableVC
+            drinkTableVC.dataManager = self.dataManager
+        }
+    }
 }
