@@ -89,7 +89,16 @@ class DrinkTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("Drink [Have, Don't Have]: \(dataManager.numIngredientsInDrink(dataManager.userDrinks[indexPath.row])))")
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.performSegueWithIdentifier("drinkInfo", sender: self)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "drinkInfo") {
+            var drinkInfo = segue.destinationViewController as! DrinkInfoVC
+            //drinkInfo.drink = dataManager.drinks[0]
+        }
+    }
+
     
     /*optional func numberOfSectionsInTableView(tableView: UITableView) -> Int // Default is 1 if not implemented
     

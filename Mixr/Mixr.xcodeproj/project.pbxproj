@@ -20,6 +20,8 @@
 		3467E89D1B9D3F1E007C0C5F /* DrinkTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E89C1B9D3F1E007C0C5F /* DrinkTableVC.swift */; };
 		3467E8A01B9D5979007C0C5F /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E89F1B9D5979007C0C5F /* AddVC.swift */; };
 		3467E8A31B9D85F5007C0C5F /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E8A21B9D85F5007C0C5F /* FavoritesVC.swift */; };
+		3467E8A71B9E3753007C0C5F /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3467E8A61B9E3753007C0C5F /* Pacifico.ttf */; };
+		3467E8AA1B9E39D3007C0C5F /* DrinkInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E8A91B9E39D3007C0C5F /* DrinkInfoVC.swift */; };
 		34ADC2801B9D2631003F7567 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ADC27F1B9D2631003F7567 /* ContainerVC.swift */; };
 		34DF01461B9BEE0D00EEBA1D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DF01451B9BEE0D00EEBA1D /* DataManager.swift */; };
 		34DF014B1B9BEE9100EEBA1D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DF014A1B9BEE9100EEBA1D /* AudioToolbox.framework */; };
@@ -65,6 +67,8 @@
 		3467E89C1B9D3F1E007C0C5F /* DrinkTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkTableVC.swift; sourceTree = "<group>"; };
 		3467E89F1B9D5979007C0C5F /* AddVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		3467E8A21B9D85F5007C0C5F /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
+		3467E8A61B9E3753007C0C5F /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Pacifico.ttf; path = ../../../Aloa/PartyWolfIOS/PartyWolf/PFF/Pacifico.ttf; sourceTree = "<group>"; };
+		3467E8A91B9E39D3007C0C5F /* DrinkInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkInfoVC.swift; sourceTree = "<group>"; };
 		34ADC27F1B9D2631003F7567 /* ContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		34DF01451B9BEE0D00EEBA1D /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		34DF014A1B9BEE9100EEBA1D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -139,6 +143,7 @@
 				34ADC27F1B9D2631003F7567 /* ContainerVC.swift */,
 				34DF01441B9BEDC200EEBA1D /* Main */,
 				3467E8991B9D3EDE007C0C5F /* DrinkTable */,
+				3467E8AB1B9E3B77007C0C5F /* DrinkInfo */,
 				3467E8A11B9D85D4007C0C5F /* Favorites */,
 				3467E89E1B9D591E007C0C5F /* Add */,
 				340616231B9BC475002D7608 /* Images.xcassets */,
@@ -151,6 +156,7 @@
 		340616171B9BC475002D7608 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3467E8A51B9E3731007C0C5F /* Fonts */,
 				340616191B9BC475002D7608 /* AppDelegate.swift */,
 				3406163F1B9BC978002D7608 /* Utils.swift */,
 				340616181B9BC475002D7608 /* Info.plist */,
@@ -200,6 +206,22 @@
 				3467E8A21B9D85F5007C0C5F /* FavoritesVC.swift */,
 			);
 			name = Favorites;
+			sourceTree = "<group>";
+		};
+		3467E8A51B9E3731007C0C5F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3467E8A61B9E3753007C0C5F /* Pacifico.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		3467E8AB1B9E3B77007C0C5F /* DrinkInfo */ = {
+			isa = PBXGroup;
+			children = (
+				3467E8A91B9E39D3007C0C5F /* DrinkInfoVC.swift */,
+			);
+			name = DrinkInfo;
 			sourceTree = "<group>";
 		};
 		34DF01441B9BEDC200EEBA1D /* Main */ = {
@@ -323,6 +345,7 @@
 			files = (
 				340616221B9BC475002D7608 /* Main.storyboard in Resources */,
 				340616271B9BC475002D7608 /* LaunchScreen.xib in Resources */,
+				3467E8A71B9E3753007C0C5F /* Pacifico.ttf in Resources */,
 				340616241B9BC475002D7608 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +414,7 @@
 			files = (
 				3467E89D1B9D3F1E007C0C5F /* DrinkTableVC.swift in Sources */,
 				34ADC2801B9D2631003F7567 /* ContainerVC.swift in Sources */,
+				3467E8AA1B9E39D3007C0C5F /* DrinkInfoVC.swift in Sources */,
 				3406161A1B9BC475002D7608 /* AppDelegate.swift in Sources */,
 				34DF01461B9BEE0D00EEBA1D /* DataManager.swift in Sources */,
 				3467E8A01B9D5979007C0C5F /* AddVC.swift in Sources */,

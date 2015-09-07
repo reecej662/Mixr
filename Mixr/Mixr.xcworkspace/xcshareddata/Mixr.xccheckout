@@ -12,6 +12,8 @@
 	<dict>
 		<key>36EA7E2D240AD14E9749D9900A8AB57219E117A7</key>
 		<string>https://github.com/reecej662/Mixr.git</string>
+		<key>53C85763A0682CB0543AF520378B67675647FDB9</key>
+		<string>https://github.com/chrisr22/PartyWolf.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Mixr/Mixr.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>36EA7E2D240AD14E9749D9900A8AB57219E117A7</key>
 		<string>../..</string>
+		<key>53C85763A0682CB0543AF520378B67675647FDB9</key>
+		<string>../../../Aloa/PartyWolfIOS/PartyWolf</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/reecej662/Mixr.git</string>
@@ -35,6 +39,14 @@
 			<string>36EA7E2D240AD14E9749D9900A8AB57219E117A7</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Mixr</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>53C85763A0682CB0543AF520378B67675647FDB9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PartyWolf</string>
 		</dict>
 	</array>
 </dict>

@@ -48,7 +48,7 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         self.navigationController?.navigationBar.barTintColor = colorWithHexString("#D54903")
     
         if let font = UIFont(name: "Pacifico", size: 20) {
-            self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Pacifico", size: 34)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+            self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Pacifico", size: 26)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         } else if let font = UIFont(name: "Avenir", size: 34) {
             self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir", size: 24)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
             
