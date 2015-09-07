@@ -19,6 +19,7 @@
 		3467E89B1B9D3F08007C0C5F /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E89A1B9D3F08007C0C5F /* DrinkCell.swift */; };
 		3467E89D1B9D3F1E007C0C5F /* DrinkTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E89C1B9D3F1E007C0C5F /* DrinkTableVC.swift */; };
 		3467E8A01B9D5979007C0C5F /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E89F1B9D5979007C0C5F /* AddVC.swift */; };
+		3467E8A31B9D85F5007C0C5F /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E8A21B9D85F5007C0C5F /* FavoritesVC.swift */; };
 		34ADC2801B9D2631003F7567 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ADC27F1B9D2631003F7567 /* ContainerVC.swift */; };
 		34DF01461B9BEE0D00EEBA1D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DF01451B9BEE0D00EEBA1D /* DataManager.swift */; };
 		34DF014B1B9BEE9100EEBA1D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DF014A1B9BEE9100EEBA1D /* AudioToolbox.framework */; };
@@ -63,6 +64,7 @@
 		3467E89A1B9D3F08007C0C5F /* DrinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		3467E89C1B9D3F1E007C0C5F /* DrinkTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkTableVC.swift; sourceTree = "<group>"; };
 		3467E89F1B9D5979007C0C5F /* AddVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
+		3467E8A21B9D85F5007C0C5F /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		34ADC27F1B9D2631003F7567 /* ContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		34DF01451B9BEE0D00EEBA1D /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		34DF014A1B9BEE9100EEBA1D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -137,6 +139,7 @@
 				34ADC27F1B9D2631003F7567 /* ContainerVC.swift */,
 				34DF01441B9BEDC200EEBA1D /* Main */,
 				3467E8991B9D3EDE007C0C5F /* DrinkTable */,
+				3467E8A11B9D85D4007C0C5F /* Favorites */,
 				3467E89E1B9D591E007C0C5F /* Add */,
 				340616231B9BC475002D7608 /* Images.xcassets */,
 				3406161B1B9BC475002D7608 /* Mixr.xcdatamodeld */,
@@ -189,6 +192,14 @@
 				3467E89F1B9D5979007C0C5F /* AddVC.swift */,
 			);
 			name = Add;
+			sourceTree = "<group>";
+		};
+		3467E8A11B9D85D4007C0C5F /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				3467E8A21B9D85F5007C0C5F /* FavoritesVC.swift */,
+			);
+			name = Favorites;
 			sourceTree = "<group>";
 		};
 		34DF01441B9BEDC200EEBA1D /* Main */ = {
@@ -386,6 +397,7 @@
 				340616451B9BD19F002D7608 /* IngredientCell.swift in Sources */,
 				3467E89B1B9D3F08007C0C5F /* DrinkCell.swift in Sources */,
 				34DF015F1B9BEF2F00EEBA1D /* Structs.swift in Sources */,
+				3467E8A31B9D85F5007C0C5F /* FavoritesVC.swift in Sources */,
 				3406163D1B9BC84F002D7608 /* MainVC.swift in Sources */,
 				3406161D1B9BC475002D7608 /* Mixr.xcdatamodeld in Sources */,
 				340616401B9BC978002D7608 /* Utils.swift in Sources */,

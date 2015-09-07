@@ -14,6 +14,7 @@ class DataManager {
     var selectedIngredients:[Ingredient] = []
     var drinks:[Drink] = []
     var userDrinks:[Drink] = []
+    var favoriteDrinks:[Drink] = [] // Maybe store these into core data or figure out a place to put them
     var listener:DataListener
     
     init(listener: DataListener) {

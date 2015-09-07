@@ -172,6 +172,9 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         if(segue.identifier == "mix") {
             let drinkTableVC = segue.destinationViewController as! DrinkTableVC
             drinkTableVC.dataManager = self.dataManager
+        } else if(segue.identifier == "favorite") {
+            let favoriteTableVC = segue.destinationViewController as! FavoritesVC
+            favoriteTableVC.dataManager = self.dataManager
         }
     }
 }
