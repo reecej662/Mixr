@@ -13,6 +13,7 @@ class DataManager {
     var ingredients:[Ingredient] = []
     var selectedIngredients:[Ingredient] = []
     var drinks:[Drink] = []
+    var userDrinks:[Drink] = []
     var listener:DataListener
     
     init(listener: DataListener) {
@@ -44,6 +45,7 @@ class DataManager {
                     for object in objects {
                         self.drinks.append(Drink(object: object))
                     }
+                    self.sortDrinksForUser()
                     self.listener.dataFinished()
                 }
             }
@@ -65,6 +67,60 @@ class DataManager {
         }
         
         return [have, dontHave]
+    }
+    
+    func sortDrinksForUser() {
+        userDrinks.removeAll(keepCapacity: false)
+        for drink in self.drinks {
+            var haveDontHave:[Int] = numIngredientsInDrink(drink)
+            
+            // Implement a sorting algorithm here...
+            
+            var currentIndex = userDrinks.count
+            userDrinks.append(drink)
+            while(currentIndex != 0 && compareDrinks(userDrinks[currentIndex-1], drink2: userDrinks[currentIndex])) {
+                userDrinks.removeAtIndex(currentIndex)
+                userDrinks.insert(drink, atIndex: currentIndex-1)
+                currentIndex--
+            }
+        }
+        self.listener.dataFinished()
+    }
+    
+    // Returns true if the second drink has fewer drinks than the first
+    func compareDrinks(drink1: Drink, drink2: Drink) -> Bool {
+        let drink1num:[Int] = numIngredientsInDrink(drink1)
+        let drink2num:[Int] = numIngredientsInDrink(drink2)
+        if(drink1num[0] > drink2num[0]) {
+            return false
+        } else if (drink1num[0] < drink2num[0]) {
+            return true
+        } else {
+            if(drink1num[1] > drink2num[1]) {
+                return true
+            } else if(drink1num[1] < drink2num[1]) {
+                return false
+            }
+        }
+        return false
+    }
+    
+    func userHasIngredient(ingredient: Ingredient) -> Bool {
+        for selectedIngredient in selectedIngredients {
+            if selectedIngredient.equals(ingredient) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func userHasIngredient(ingredient: String) -> Bool {
+        for selectedIngredient in selectedIngredients {
+            if selectedIngredient.equals(ingredient) {
+                return true
+            }
+        }
+        return false
     }
     
     func getIngredients() -> [Ingredient]! {

@@ -50,8 +50,8 @@ class DrinkTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // Data source stuff
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("Drink number: \(dataManager.drinks.count)")
-        return dataManager.drinks.count
+        println("Drink number: \(dataManager.userDrinks.count)")
+        return dataManager.userDrinks.count
     }
     
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -61,7 +61,7 @@ class DrinkTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let cell = drinkTable.dequeueReusableCellWithIdentifier("drinkCell") as! DrinkCell
         
-        var drink:Drink = dataManager.getDrink(indexPath.row)
+        var drink:Drink = dataManager.userDrinks[indexPath.row]
         
         cell.drinkName.text = drink.name
         cell.drinkImage.image = drink.image
@@ -69,7 +69,9 @@ class DrinkTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         var ingredientList:String = ""
         if(drink.ingredients.count < 4 && drink.ingredients.count > 0) {
             for ingredient in drink.ingredients {
-                ingredientList = ingredientList + "\(ingredient.name)\n"
+                if(!dataManager.userHasIngredient(ingredient)) {
+                    ingredientList = ingredientList + "\(ingredient)\n"
+                }
             }
         } else if(drink.ingredients.count == 0){
             ingredientList = "No ingredients found"
@@ -80,13 +82,12 @@ class DrinkTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         
         cell.ingredientList.text = ingredientList
-        cell.ingredientList.sizeToFit()
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("User selected: \(dataManager.drinks[indexPath.row].name)")
+        println("Drink [Have, Don't Have]: \(dataManager.numIngredientsInDrink(dataManager.userDrinks[indexPath.row])))")
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

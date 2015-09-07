@@ -27,15 +27,19 @@ struct Ingredient {
     func equals(ingredient: Ingredient) -> Bool {
         return ingredient.name == self.name ? true : false
     }
+    
+    func equals(ingredient: String) -> Bool {
+        return self.name.capitalizedString == ingredient.capitalizedString ? true : false
+    }
 }
 
 struct Drink {
     var name:String
-    var ingredients:[Ingredient]
+    var ingredients:[String]
     var image:UIImage
     var instructions:String
     
-    init(name: String, ingredients: [Ingredient], image: UIImage, instructions: String) {
+    init(name: String, ingredients: [String], image: UIImage, instructions: String) {
         self.name = name
         self.ingredients = ingredients
         self.image = image
@@ -46,8 +50,9 @@ struct Drink {
         self.name = object["name"] as! String
         self.image = UIImage(named: object["image"] as! String)!
         self.instructions = "Blank for now" //object["instructions"] as! String
-        self.ingredients = []
+        self.ingredients = object["ingredients"] as! [String]
     
+        /*
         let ingredientRelation = object["ingredients"] as! PFRelation
         let ingredientQuery = ingredientRelation.query()
         ingredientQuery?.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -56,7 +61,7 @@ struct Drink {
                     self.ingredients.append(Ingredient(object: object))
                 }
             }
-        })
+        })*/
     }
         
 }

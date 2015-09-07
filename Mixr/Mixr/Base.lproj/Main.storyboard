@@ -273,10 +273,10 @@
             </objects>
             <point key="canvasLocation" x="297" y="-132"/>
         </scene>
-        <!--View Controller-->
+        <!--Favorites-->
         <scene sceneID="ybX-mM-ioZ">
             <objects>
-                <viewController id="ezw-V4-ixt" sceneMemberID="viewController">
+                <viewController title="Favorites" id="ezw-V4-ixt" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BfF-rB-U43"/>
                         <viewControllerLayoutGuide type="bottom" id="qzH-fL-2UM"/>
@@ -641,7 +641,7 @@
                                                     <color key="textColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="204" y="51" width="119" height="21"/>
+                                                        <rect key="frame" x="204" y="51" width="126" height="53"/>
                                                     </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aby-6F-vK0">

@@ -17,6 +17,7 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var dataManager:DataManager!
     
     @IBAction func Go(sender: AnyObject) {
+        dataManager.sortDrinksForUser()
     }
     
     override func viewDidLoad() {
