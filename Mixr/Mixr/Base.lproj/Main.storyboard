@@ -1270,7 +1270,8 @@
                                         <exclude reference="mYk-Sd-qe2"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="16" y="135" width="368" height="645"/>
                                     <mask key="subviews">
                                         <include reference="Onc-yG-zU4"/>
                                         <include reference="CQN-gr-Bvo"/>

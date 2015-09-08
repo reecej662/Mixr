@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DataListener {
+class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, DataListener {
 
     @IBOutlet var iHaveLabel: UILabel!
     @IBOutlet var scrollViewHeight: NSLayoutConstraint!
@@ -64,6 +64,7 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func setUpScrollView() {
         self.scrollViewHeight.constant = 80
         ingredientScrollView.pagingEnabled = true
+        ingredientScrollView.scrollsToTop = false
     }
     
     
@@ -142,7 +143,8 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         var numSelected:CGFloat = CGFloat(number)
         var dimensions:CGFloat = 75
         var offset:CGFloat = (20 * numSelected) + (dimensions * (numSelected - 1))
-        var ingredientView = UIView(frame: CGRectMake(offset, 0, dimensions, dimensions))
+        var ingredientView = IngredientView(frame: CGRectMake(offset, 0, dimensions, dimensions))
+        ingredientView.number = number
         ingredientView.layer.cornerRadius = 6
         ingredientView.backgroundColor = UIColor.whiteColor()
         
@@ -156,6 +158,7 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         ingredientView.addSubview(drinkImageView)
         ingredientView.addSubview(drinkLabel)
+        ingredientView.addGestureRecognizer(addIngredientGestureRecongizer())
         
         var contentSize = CGSizeMake(offset + dimensions + 10, ingredientScrollView.frame.height)
         ingredientScrollView.contentSize = contentSize
@@ -165,6 +168,62 @@ class MainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.ingredientScrollView.contentOffset = CGPointMake(self.ingredientScrollView.contentSize.width - self.view.frame.width,0)
             })
+        }
+    }
+    
+    func addIngredientGestureRecongizer() -> UIGestureRecognizer {
+        var gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("tapped:"))
+        gestureRecognizer.delegate = self
+        return gestureRecognizer
+    }
+    
+    func tapped(recognizer: UITapGestureRecognizer) {
+        let ingredientView = recognizer.view
+        let viewFrame = ingredientView!.frame
+        recognizer.view?.removeGestureRecognizer(recognizer)
+
+        var buttonViews = UIView(frame: CGRectMake(0, 0, viewFrame.width, viewFrame.height))
+        buttonViews.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        
+        var removeButton = UIButton(frame: CGRectMake(0, 0, viewFrame.width, viewFrame.height/2))
+        removeButton.setTitle("Remove", forState: .Normal)
+        removeButton.titleLabel?.font = UIFont(name: "Avenir", size: 15)
+        removeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        removeButton.setTitleColor(UIColor(white: 0.6, alpha: 1), forState: UIControlState.Highlighted)
+        removeButton.addTarget(self, action: "removeIngredient:", forControlEvents: .TouchUpInside)
+        
+        var cancelButton = UIButton(frame: CGRectMake(0, viewFrame.height/2, viewFrame.width, viewFrame.height/2))
+        cancelButton.setTitle("Cancel", forState: .Normal)
+        cancelButton.titleLabel?.font = UIFont(name: "Avenir", size: 15)
+        cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        cancelButton.setTitleColor(UIColor(white: 0.6, alpha: 1), forState: UIControlState.Highlighted)
+        cancelButton.addTarget(self, action: "cancel:", forControlEvents: .TouchUpInside)
+        
+        buttonViews.addSubview(cancelButton)
+        buttonViews.addSubview(removeButton)
+        ingredientView?.addSubview(buttonViews)
+        
+    }
+    
+    func cancel(sender: UIView) {
+        sender.superview?.superview?.addGestureRecognizer(addIngredientGestureRecongizer())
+        sender.superview?.removeFromSuperview()
+    }
+    
+    func removeIngredient(sender: UIView) {
+        var ingredientView = sender.superview?.superview as! IngredientView
+        println("Ingredient view number \(ingredientView.number)")
+        dataManager.selectedIngredients.removeAtIndex(ingredientView.number-1)
+        ingredientView.removeFromSuperview()
+        
+        for subview in ingredientScrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        var i = 1
+        for ingredient in dataManager.selectedIngredients {
+            addIngredient(ingredient, number: i)
+            i++
         }
     }
     
